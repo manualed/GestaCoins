@@ -13,7 +13,7 @@ pipeline {
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
     jdk 'JDK8_Centos' //Preinstalada en la Configuración del Master
-    gradle 'Gradle4.5_Centos' //Preinstalada en la Configuración del Master
+    gradle 'Gradle5.6_Centos' //Preinstalada en la Configuración del Master
   }
 
   //Aquí comienzan los “items” del Pipeline
@@ -26,12 +26,13 @@ pipeline {
 			branches: [[name: '*/master']], 
 			doGenerateSubmoduleConfigurations: false, 
 			extensions: [], 
-			gitTool: 'Default', 
+			gitTool: 'Git_Centos', 
 			submoduleCfg: [], 
 			userRemoteConfigs: [[
 			credentialsId: 'GitHub_manualed', 
-			url:'https://github.com/manualed/GestaCoins'
-
+			url:'https://github.com/manualed/GestaCoins.git'
+			]]
+			])
       }
     }
     
