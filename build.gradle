@@ -1,9 +1,13 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.6.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-	id 'java'
+	id 'jacoco'
+    id 'java'
 	id "org.sonarqube" version "2.7"
 }
+
+apply plugin: 'java'
+apply plugin: 'jacoco'
 
 group = 'co.com.ceiba.adn'
 version = '0.0.1-SNAPSHOT'
@@ -32,6 +36,11 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.10'
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
 test {
 	useJUnitPlatform()
 }
