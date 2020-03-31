@@ -1,9 +1,20 @@
-package co.com.ceiba.adn.domain.model;
+package co.com.ceiba.adn.domain.model.entity;
 
 import java.util.Date;
 import java.util.List;
 
 public class Empleado {
+	
+	private static final String TIPO_DOCUMENTO_OBLIGATORIO = "El tipo documento es obligatorio.";
+	private static final String NUMERO_DOCUMENTO_OBLIGATORIO = "El numero de documento es obligatorio.";
+	private static final String PRIMER_NOMBRE_OBLIGATORIO = "El primer nombre es obligatorio.";
+	private static final String PRIMER_APELLIDO_OBLIGATORIO = "El primer apellido es obligatorio.";
+	private static final String FECHA_INGRESO_OBLIGATORIO = "La fecha de ingreso es obligatoria.";	
+	private static final String FECHA_NACIMIENTO_OBLIGATORIO = "La fecha de nacimiento es obligatoria.";	
+	private static final String FECHA_CAMBIO_OBLIGATORIO = "La fecha del cambio del registro es obligatorio.";	
+	private static final String EMAIL_OBLIGATORIO = "El email es obligatorio.";
+	
+	
 
 	private long idEmpleado;
 	private String tipoDocumento;
@@ -18,6 +29,16 @@ public class Empleado {
 
 	public Empleado(long idEmpleado, String tipoDocumento, String numeroDocumento, String primerNombre,
 			String primerApellido, Date fechaIngreso, Date fechaNacimiento, Date fechaCambio, String email) {
+		
+		Validador.validarObligatoriedad(tipoDocumento, TIPO_DOCUMENTO_OBLIGATORIO);
+		Validador.validarObligatoriedad(numeroDocumento, NUMERO_DOCUMENTO_OBLIGATORIO);
+		Validador.validarObligatoriedad(primerNombre, PRIMER_NOMBRE_OBLIGATORIO);
+		Validador.validarObligatoriedad(primerApellido, PRIMER_APELLIDO_OBLIGATORIO);
+		Validador.validarObligatoriedad(fechaIngreso, FECHA_INGRESO_OBLIGATORIO);
+		Validador.validarObligatoriedad(fechaNacimiento, FECHA_NACIMIENTO_OBLIGATORIO);
+		Validador.validarObligatoriedad(fechaCambio, FECHA_CAMBIO_OBLIGATORIO);
+		Validador.validarObligatoriedad(email, EMAIL_OBLIGATORIO);
+		
 		this.idEmpleado = idEmpleado;
 		this.tipoDocumento = tipoDocumento;
 		this.numeroDocumento = numeroDocumento;

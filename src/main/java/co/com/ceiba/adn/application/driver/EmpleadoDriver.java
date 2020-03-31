@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import co.com.ceiba.adn.application.command.EmpleadoCommand;
 import co.com.ceiba.adn.application.factory.EmpleadoFactory;
-import co.com.ceiba.adn.domain.model.Empleado;
+import co.com.ceiba.adn.domain.model.entity.Empleado;
 import co.com.ceiba.adn.domain.service.EmpleadoService;
 
 @Component

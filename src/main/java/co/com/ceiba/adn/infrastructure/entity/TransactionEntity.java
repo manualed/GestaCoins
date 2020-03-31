@@ -22,7 +22,7 @@ public class TransactionEntity {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date fechaObtencion;
-	@NotNull
+	
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date fechaRedencion;

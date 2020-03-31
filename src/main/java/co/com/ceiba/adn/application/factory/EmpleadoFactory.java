@@ -3,7 +3,7 @@ package co.com.ceiba.adn.application.factory;
 import org.springframework.stereotype.Component;
 
 import co.com.ceiba.adn.application.command.EmpleadoCommand;
-import co.com.ceiba.adn.domain.model.Empleado;
+import co.com.ceiba.adn.domain.model.entity.Empleado;
 
 @Component
 public class EmpleadoFactory {

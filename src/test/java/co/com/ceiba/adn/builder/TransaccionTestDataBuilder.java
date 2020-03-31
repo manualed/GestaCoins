@@ -3,7 +3,7 @@ package co.com.ceiba.adn.builder;
 import java.util.Calendar;
 import java.util.Date;
 
-import co.com.ceiba.adn.domain.model.Transaccion;
+import co.com.ceiba.adn.domain.model.entity.Transaccion;
 
 public class TransaccionTestDataBuilder {
 

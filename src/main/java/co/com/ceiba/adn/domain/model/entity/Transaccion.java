@@ -1,4 +1,4 @@
-package co.com.ceiba.adn.domain.model;
+package co.com.ceiba.adn.domain.model.entity;
 
 import java.util.Date;
 

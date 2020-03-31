@@ -2,7 +2,7 @@ package co.com.ceiba.adn.domain.port.repository;
 
 import java.util.List;
 
-import co.com.ceiba.adn.domain.model.Empleado;
+import co.com.ceiba.adn.domain.model.entity.Empleado;
 
 public interface IEmpleadoRepository {
 	

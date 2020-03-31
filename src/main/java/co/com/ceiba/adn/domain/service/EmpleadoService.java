@@ -3,7 +3,7 @@ package co.com.ceiba.adn.domain.service;
 import org.springframework.stereotype.Service;
 
 import co.com.ceiba.adn.domain.exception.DuplicityException;
-import co.com.ceiba.adn.domain.model.Empleado;
+import co.com.ceiba.adn.domain.model.entity.Empleado;
 import co.com.ceiba.adn.domain.port.repository.IEmpleadoRepository;
 
 public class EmpleadoService {

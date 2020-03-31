@@ -1,6 +1,6 @@
 package co.com.ceiba.adn.builder;
 
-import co.com.ceiba.adn.domain.model.Bonificacion;
+import co.com.ceiba.adn.domain.model.entity.Bonificacion;
 
 public class BonificacionTestDataBuilder {
 

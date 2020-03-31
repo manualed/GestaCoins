@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import co.com.ceiba.adn.BasePrueba;
 import co.com.ceiba.adn.builder.EmpleadoTestDataBuilder;
 import co.com.ceiba.adn.domain.exception.RequiredValueException;
-import co.com.ceiba.adn.domain.model.Empleado;
-import static co.com.ceiba.adn.builder.EmpleadoTestDataBuilder.unEmpleado;
+import co.com.ceiba.adn.domain.model.entity.Empleado;
 
 class EmpleadoTest {
 	private static final String TIPO_DOCUMENTO_OBLIGATORIO = "El tipo documento es obligatorio.";
@@ -17,6 +16,7 @@ class EmpleadoTest {
 	private static final String FECHA_INGRESO_OBLIGATORIO = "La fecha de ingreso es obligatoria.";	
 	private static final String FECHA_NACIMIENTO_OBLIGATORIO = "La fecha de nacimiento es obligatoria.";	
 	private static final String FECHA_CAMBIO_OBLIGATORIO = "La fecha del cambio del registro es obligatorio.";	
+	private static final String EMAIL_OBLIGATORIO = "El email es obligatorio.";
 
 	@Test
 	public void validarCreacionEmpleado() {
@@ -34,6 +34,7 @@ class EmpleadoTest {
 		Assert.assertNotNull(empleado.getFechaIngreso());
 		Assert.assertNotNull(empleado.getFechaNacimiento());
 		Assert.assertNotNull(empleado.getFechaCambio());
+		Assert.assertNotNull(empleado.getEmail());
 		
 	}
 	
@@ -75,9 +76,8 @@ class EmpleadoTest {
 	@Test
 	public void validarFechaIngresoObligatorio() {
 		//Arrange
-		//EmpleadoTestDataBuilder empleadoTestDataBuilder = new EmpleadoTestDataBuilder();
-		EmpleadoTestDataBuilder empleadoTestDataBuilder = unEmpleado().conFechaIngreso(null);
-		//empleadoTestDataBuilder.conFechaIngreso(null);
+		EmpleadoTestDataBuilder empleadoTestDataBuilder = new EmpleadoTestDataBuilder();
+		empleadoTestDataBuilder.conFechaIngreso(null);
 		//Act - Assert
 		BasePrueba.assertThrows(() -> empleadoTestDataBuilder.build(), RequiredValueException.class, FECHA_INGRESO_OBLIGATORIO);
 	}
@@ -85,7 +85,7 @@ class EmpleadoTest {
 	public void validarFechaNacimientoObligatorio() {
 		//Arrange
 		EmpleadoTestDataBuilder empleadoTestDataBuilder = new EmpleadoTestDataBuilder();
-		empleadoTestDataBuilder.conFechaIngreso(null);
+		empleadoTestDataBuilder.conFechaNacimiento(null);
 		//Act - Assert
 		BasePrueba.assertThrows(() -> empleadoTestDataBuilder.build(), RequiredValueException.class, FECHA_NACIMIENTO_OBLIGATORIO);
 	}
@@ -93,8 +93,17 @@ class EmpleadoTest {
 	public void validarFechaCambioObligatorio() {
 		//Arrange
 		EmpleadoTestDataBuilder empleadoTestDataBuilder = new EmpleadoTestDataBuilder();
-		empleadoTestDataBuilder.conFechaIngreso(null);
+		empleadoTestDataBuilder.conFechaCambio(null);
 		//Act - Assert
 		BasePrueba.assertThrows(() -> empleadoTestDataBuilder.build(), RequiredValueException.class, FECHA_CAMBIO_OBLIGATORIO);
+	}
+	
+	@Test
+	public void validarEmailObligatorio() {
+		//Arrange
+		EmpleadoTestDataBuilder empleadoTestDataBuilder = new EmpleadoTestDataBuilder();
+		empleadoTestDataBuilder.conEmail(null);
+		//Act - Assert
+		BasePrueba.assertThrows(() -> empleadoTestDataBuilder.build(), RequiredValueException.class, EMAIL_OBLIGATORIO);
 	}
 }

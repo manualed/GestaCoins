@@ -3,7 +3,7 @@ package co.com.ceiba.adn.application.factory;
 import org.springframework.stereotype.Component;
 
 import co.com.ceiba.adn.application.command.TransaccionCommand;
-import co.com.ceiba.adn.domain.model.Transaccion;
+import co.com.ceiba.adn.domain.model.entity.Transaccion;
 
 @Component
 public class TransaccionFactory {

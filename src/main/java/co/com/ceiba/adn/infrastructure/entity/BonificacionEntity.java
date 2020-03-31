@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import co.com.ceiba.adn.domain.model.Empleado;
+import co.com.ceiba.adn.domain.model.entity.Empleado;
 
 @Entity
 @Table(name = "bonificacion")

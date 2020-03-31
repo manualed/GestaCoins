@@ -6,8 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import co.com.ceiba.adn.domain.model.Empleado;
-import co.com.ceiba.adn.domain.model.Transaccion;
+import co.com.ceiba.adn.domain.model.entity.Empleado;
+import co.com.ceiba.adn.domain.model.entity.Transaccion;
 
 public class EmpleadoTestDataBuilder {
 
@@ -92,8 +92,8 @@ public class EmpleadoTestDataBuilder {
 				fechaNacimiento, fechaCambio, email);
 	}
 	
-	public static EmpleadoTestDataBuilder unEmpleado(){
-        return new EmpleadoTestDataBuilder();
-    }
+//	public static EmpleadoTestDataBuilder unEmpleado(){
+//        return new EmpleadoTestDataBuilder();
+//    }
 
 }

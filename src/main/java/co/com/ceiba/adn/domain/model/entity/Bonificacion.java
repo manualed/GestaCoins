@@ -1,4 +1,4 @@
-package co.com.ceiba.adn.domain.model;
+package co.com.ceiba.adn.domain.model.entity;
 
 public class Bonificacion {
 

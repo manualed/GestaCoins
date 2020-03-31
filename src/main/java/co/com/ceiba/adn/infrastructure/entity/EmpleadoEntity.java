@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import co.com.ceiba.adn.domain.model.Bonificacion;
+import co.com.ceiba.adn.domain.model.entity.Bonificacion;
 
 @Entity
 @Table(name = "empleado")
