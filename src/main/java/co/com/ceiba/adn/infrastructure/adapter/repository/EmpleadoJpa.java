@@ -15,23 +15,23 @@ public class EmpleadoJpa implements IEmpleadoRepository{
 	@Autowired
 	private ModelMapper modelMapper;
 	@Autowired
-	private final IEmpleadoJpa empleadoJpa;
+	private final IEmpleadoJpa empleadoJpaRepository;
 	
 	private Mapper mapper = new Mapper();
 	
 	public EmpleadoJpa(IEmpleadoJpa empleadoJpa) {
-		this.empleadoJpa = empleadoJpa;
+		this.empleadoJpaRepository = empleadoJpa;
 	}
 	@Override
 	public void crearEmpleado(Empleado empleado) {
 		EmpleadoEntity empleadoEntity = modelMapper.map(empleado, EmpleadoEntity.class);
-		empleadoJpa.save(empleadoEntity);
+		empleadoJpaRepository.save(empleadoEntity);
 		
 	}
 
 	@Override
     public List<Empleado> listar() {
-        List<EmpleadoEntity> empleadoEntity = this.empleadoJpa.findAll();
+        List<EmpleadoEntity> empleadoEntity = this.empleadoJpaRepository.findAll();
         return this.mapper.entityToModelList(empleadoEntity);
     }
 

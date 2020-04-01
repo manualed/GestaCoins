@@ -10,8 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "bonificacion")
+@Setter
+@Getter
 public class BonificacionEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -25,7 +30,7 @@ public class BonificacionEntity implements Serializable {
 	private String nombreBonificacion;
 	
 	private long valorBonificacion;
-
+	
 	private int tipoBonificacion;
 	
 	@OneToMany(mappedBy = "bonificacion")

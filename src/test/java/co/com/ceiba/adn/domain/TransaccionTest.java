@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import co.com.ceiba.adn.BasePrueba;
-import co.com.ceiba.adn.builder.BonificacionTestDataBuilder;
-import co.com.ceiba.adn.builder.EmpleadoTestDataBuilder;
 import co.com.ceiba.adn.builder.TransaccionTestDataBuilder;
 import co.com.ceiba.adn.domain.exception.RequiredValueException;
 import co.com.ceiba.adn.domain.exception.ValidValueException;

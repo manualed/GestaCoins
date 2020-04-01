@@ -13,16 +13,16 @@ public class BonificacionJpa implements IBonificacionRepository{
 	@Autowired
 	private ModelMapper modelMapper;
 	@Autowired
-	private final IBonificacionJpa bonificacionJpa;
+	private final IBonificacionJpa bonificacionJpaRepository;
 	
 	public BonificacionJpa(IBonificacionJpa bonificacionJpa) {
-		this.bonificacionJpa = bonificacionJpa;
+		this.bonificacionJpaRepository = bonificacionJpa;
 	}
 	
 	@Override
 	public void crearBonificacion(Bonificacion bonificacion) {
 		BonificacionEntity bonificacionEntity = modelMapper.map(bonificacion, BonificacionEntity.class);
-		bonificacionJpa.save(bonificacionEntity);
+		bonificacionJpaRepository.save(bonificacionEntity);
 	}
 
 }

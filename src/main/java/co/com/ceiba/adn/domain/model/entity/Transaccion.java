@@ -2,6 +2,10 @@ package co.com.ceiba.adn.domain.model.entity;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.Setter;
+@Setter
+@Getter
 public class Transaccion {
 	private static final String EMPLEADO_OBLIGATORIO = "El empleado es obligatorio.";
 	private static final String BONIFICACION_OBLIGATORIO = "La bonificacion es obligatoria.";
@@ -28,10 +32,7 @@ public class Transaccion {
 		
 		Validador.validarValorValido(idBonificacion, VALOR_NO_VALIDO_ID_BONIFICACION , VALOR_IDBONIFICACION_DEBE_SER_MAYOR_A);
 		Validador.validarValorValido(idEmpleado, VALOR_NO_VALIDO_ID_EMPLEADO , VALOR_IDEMPLEADO_DEBE_SER_MAYOR_A);
-		
-
-		
-		
+			
 		this.idEmpleado = idEmpleado;
 		this.idBonificacion = idBonificacion;
 		this.redimido = redimido;
@@ -39,44 +40,5 @@ public class Transaccion {
 		this.fechaRedencion = fechaRedencion;
 	}
 
-	public long getIdEmpleado() {
-		return idEmpleado;
-	}
-
-	public void setIdEmpleado(long idEmpleado) {
-		this.idEmpleado = idEmpleado;
-	}
-
-	public long getIdBonificacion() {
-		return idBonificacion;
-	}
-
-	public void setIdBonificacion(long idBonificacion) {
-		this.idBonificacion = idBonificacion;
-	}
-
-	public boolean isRedimido() {
-		return redimido;
-	}
-
-	public void setRedimido(boolean redimido) {
-		this.redimido = redimido;
-	}
-
-	public Date getFechaObtencion() {
-		return fechaObtencion;
-	}
-
-	public void setFechaObtencion(Date fechaObtencion) {
-		this.fechaObtencion = fechaObtencion;
-	}
-
-	public Date getFechaRedencion() {
-		return fechaRedencion;
-	}
-
-	public void setFechaRedencion(Date fechaRedencion) {
-		this.fechaRedencion = fechaRedencion;
-	}
 
 }

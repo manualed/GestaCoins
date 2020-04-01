@@ -3,7 +3,6 @@ package co.com.ceiba.adn.infrastructure.configuration;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import co.com.ceiba.adn.infrastructure.adapter.mapper.Mapper;
 
 import co.com.ceiba.adn.domain.port.repository.IBonificacionRepository;
 import co.com.ceiba.adn.domain.port.repository.IEmpleadoRepository;

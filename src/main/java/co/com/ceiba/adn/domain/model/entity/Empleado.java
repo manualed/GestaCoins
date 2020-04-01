@@ -3,6 +3,10 @@ package co.com.ceiba.adn.domain.model.entity;
 import java.util.Date;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+@Setter
+@Getter
 public class Empleado {
 	
 	private static final String TIPO_DOCUMENTO_OBLIGATORIO = "El tipo documento es obligatorio.";
@@ -76,86 +80,6 @@ public class Empleado {
 		this.email = email;
 	}
 
-	public long getIdEmpleado() {
-		return idEmpleado;
-	}
-
-	public void setIdEmpleado(long idEmpleado) {
-		this.idEmpleado = idEmpleado;
-	}
-
-	public String getTipoDocumento() {
-		return tipoDocumento;
-	}
-
-	public void setTipoDocumento(String tipoDocumento) {
-		this.tipoDocumento = tipoDocumento;
-	}
-
-	public String getNumeroDocumento() {
-		return numeroDocumento;
-	}
-
-	public void setNumeroDocumento(String numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
-	}
-
-	public String getPrimerNombre() {
-		return primerNombre;
-	}
-
-	public void setPrimerNombre(String primerNombre) {
-		this.primerNombre = primerNombre;
-	}
-
-	public String getPrimerApellido() {
-		return primerApellido;
-	}
-
-	public void setPrimerApellido(String primerApellido) {
-		this.primerApellido = primerApellido;
-	}
-
-	public Date getFechaIngreso() {
-		return fechaIngreso;
-	}
-
-	public void setFechaIngreso(Date fechaIngreso) {
-		this.fechaIngreso = fechaIngreso;
-	}
-
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-
-	public Date getFechaCambio() {
-		return fechaCambio;
-	}
-
-	public void setFechaCambio(Date fechaCambio) {
-		this.fechaCambio = fechaCambio;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public List<Transaccion> getTransacciones() {
-		return transacciones;
-	}
-
-	public void setBonificaciones(List<Transaccion> transacciones) {
-		this.transacciones = transacciones;
-	}
-	
 	
 
 }
