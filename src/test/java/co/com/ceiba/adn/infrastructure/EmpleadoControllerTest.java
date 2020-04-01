@@ -3,6 +3,7 @@ package co.com.ceiba.adn.infrastructure;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Calendar;
@@ -28,13 +29,16 @@ import com.jayway.jsonpath.JsonPath;
 
 import co.com.ceiba.adn.application.EmpleadoCommandTestDataBuilder;
 import co.com.ceiba.adn.application.command.EmpleadoCommand;
-import co.com.ceiba.adn.infrastructure.controller.EmpleadoController;
+import co.com.ceiba.adn.domain.exception.RequiredValueException;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = EmpleadoController.class)
+@SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
 public class EmpleadoControllerTest {
+	
+	private static final String NUMERO_DOCUMENTO_OBLIGATORIO = "El numero de documento es obligatorio.";
+	
 	@Autowired
 	private MockMvc mockmvc;
 
@@ -48,7 +52,7 @@ public class EmpleadoControllerTest {
     public void setup() {
     	this.mockmvc = MockMvcBuilders.webAppContextSetup(this.context).build();
     }
-	@Ignore
+	
     @Test
     public void crearEmpleado() throws Exception {
         // Arrange
@@ -64,6 +68,23 @@ public class EmpleadoControllerTest {
         
     }
     
+    @Test
+    public void crearConDatosNulos() throws Exception {
+        // Arrange
+    	EmpleadoCommandTestDataBuilder empleadoCommandTestDataBuilder = new EmpleadoCommandTestDataBuilder();
+    	empleadoCommandTestDataBuilder.conFechaIngreso(new Calendar.Builder().setDate(2012, 6, 4).build().getTime());
+    	empleadoCommandTestDataBuilder.conNumeroDocumento(null);
+    	EmpleadoCommand empleadoCommand = empleadoCommandTestDataBuilder.build();
+ 
+        // Act - Assert
+        this.mockmvc.perform(post("/api/coins/empleado")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(empleadoCommand)))
+        		.andExpect(status().isBadRequest())
+        		.andExpect(jsonPath("$.nombreExcepcion").value(RequiredValueException.class.getSimpleName()));
+        		
+    }
+    
     @Ignore
     @Test
     public void listaEmpleadosOk() throws Exception {
@@ -74,6 +95,7 @@ public class EmpleadoControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andReturn();
         result.getResponse().getContentAsString();
+        System.out.println();
         assertEquals(JsonPath.read(result, "$[0].primerNombre"), empleadoCommand.getPrimerNombre());
     }
     

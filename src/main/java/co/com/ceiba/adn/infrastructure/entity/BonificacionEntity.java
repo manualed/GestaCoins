@@ -20,13 +20,13 @@ public class BonificacionEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idBonificacion;
 	
-	@NotNull
+	
 	private String codigoBonificacion;
-	@NotNull
+	
 	private String nombreBonificacion;
-	@NotNull
+	
 	private long valorBonificacion;
-	@NotNull
+
 	private int tipoBonificacion;
 	
 	@OneToMany(mappedBy = "bonificacion")
