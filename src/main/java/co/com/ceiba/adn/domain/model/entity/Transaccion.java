@@ -3,6 +3,10 @@ package co.com.ceiba.adn.domain.model.entity;
 import java.util.Date;
 
 public class Transaccion {
+	private static final String EMPLEADO_OBLIGATORIO = "El empleado es obligatorio.";
+	private static final String BONIFICACION_OBLIGATORIO = "La bonificacion es obligatoria.";
+	private static final String REDIMIDO_OBLIGATORIO = "El campo redimido es obligatorio.";
+	private static final String FECHA_OBTENCION_OBLIGATORIO = "La fecha de obtencion es obligatoria.";	
 
 	private long idEmpleado;
 	private long idBonificacion;
@@ -12,6 +16,12 @@ public class Transaccion {
 
 	public Transaccion(long idEmpleado, long idBonificacion, boolean redimido, Date fechaObtencion,
 			Date fechaRedencion) {
+		Validador.validarObligatoriedad(idEmpleado, EMPLEADO_OBLIGATORIO);
+		Validador.validarObligatoriedad(idBonificacion, BONIFICACION_OBLIGATORIO);
+		Validador.validarObligatoriedad(redimido, REDIMIDO_OBLIGATORIO);
+		Validador.validarObligatoriedad(fechaObtencion, FECHA_OBTENCION_OBLIGATORIO);
+		
+		
 		this.idEmpleado = idEmpleado;
 		this.idBonificacion = idBonificacion;
 		this.redimido = redimido;

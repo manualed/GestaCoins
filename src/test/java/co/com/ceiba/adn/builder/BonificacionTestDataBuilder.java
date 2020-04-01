@@ -21,6 +21,10 @@ public class BonificacionTestDataBuilder {
 		this.idBonificacion = idBonificacion;
 		return this;
 	}
+	public BonificacionTestDataBuilder conIdBonificacionNoValida(long idBonificacion) {
+		this.idBonificacion = idBonificacion;
+		return this;
+	}
 	public BonificacionTestDataBuilder conCodigoBonificacion(String codigoBonificacion) {
 		this.codigoBonificacion = codigoBonificacion;
 		return this;
@@ -42,8 +46,5 @@ public class BonificacionTestDataBuilder {
 		return new Bonificacion(idBonificacion,  codigoBonificacion,  nombreBonificacion,  valorBonificacion, tipoBonificacion);
 	}
 	
-	public static BonificacionTestDataBuilder unaBonificacion(){
-        return new BonificacionTestDataBuilder();
-    }
-	
+
 }

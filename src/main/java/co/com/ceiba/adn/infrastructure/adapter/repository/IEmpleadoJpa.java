@@ -1,4 +1,4 @@
-package co.com.ceiba.adn.infrastructure;
+package co.com.ceiba.adn.infrastructure.adapter.repository;
 
 import java.util.List;
 

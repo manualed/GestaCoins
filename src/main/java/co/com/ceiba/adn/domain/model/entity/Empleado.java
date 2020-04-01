@@ -14,7 +14,23 @@ public class Empleado {
 	private static final String FECHA_CAMBIO_OBLIGATORIO = "La fecha del cambio del registro es obligatorio.";	
 	private static final String EMAIL_OBLIGATORIO = "El email es obligatorio.";
 	
+	private static final String DOCUMENTO_DEBE_TENER_MAXIMO = "El documento debe tener maximo %s caracteres.";
+	private static final String DOCUMENTO_DEBE_TENER_MINIMO = "El documento debe tener minimo %s caracteres.";
+	private static final String NOMBRE_DEBE_TENER_MAXIMO = "El nombre debe tener maximo %s caracteres.";
+	private static final String NOMBRE_DEBE_TENER_MINIMO = "El nombre debe tener minimo %s caracteres.";
+	private static final String APELLIDO_DEBE_TENER_MAXIMO = "El apellido debe tener maximo %s caracteres.";
+	private static final String APELLIDO_DEBE_TENER_MINIMO = "El apellido debe tener minimo %s caracteres.";
+	private static final String EMAIL_DEBE_TENER_MAXIMO = "El email debe tener maximo %s caracteres.";
+	private static final String EMAIL_DEBE_TENER_MINIMO = "El email debe tener minimo %s caracteres.";
 	
+	private static final int TAMANO_MAXIMO_DOCUMENTO = 50;
+	private static final int TAMANO_MINIMO_DOCUMENTO = 3;
+	private static final int TAMANO_MAXIMO_NOMBRE = 50;
+	private static final int TAMANO_MINIMO_NOMBRE = 1;
+	private static final int TAMANO_MAXIMO_APELLIDO = 50;
+	private static final int TAMANO_MINIMO_APELLIDO = 1;
+	private static final int TAMANO_MAXIMO_EMAIL = 50;
+	private static final int TAMANO_MINIMO_EMAIL = 1;
 
 	private long idEmpleado;
 	private String tipoDocumento;
@@ -38,6 +54,16 @@ public class Empleado {
 		Validador.validarObligatoriedad(fechaNacimiento, FECHA_NACIMIENTO_OBLIGATORIO);
 		Validador.validarObligatoriedad(fechaCambio, FECHA_CAMBIO_OBLIGATORIO);
 		Validador.validarObligatoriedad(email, EMAIL_OBLIGATORIO);
+		
+		Validador.validarMaxLenght(numeroDocumento, TAMANO_MAXIMO_DOCUMENTO, String.format(DOCUMENTO_DEBE_TENER_MAXIMO, TAMANO_MAXIMO_DOCUMENTO));
+		Validador.validarMinLenght(numeroDocumento, TAMANO_MINIMO_DOCUMENTO, String.format(DOCUMENTO_DEBE_TENER_MINIMO, TAMANO_MINIMO_DOCUMENTO));
+		Validador.validarMaxLenght(primerNombre, TAMANO_MAXIMO_NOMBRE, String.format(NOMBRE_DEBE_TENER_MAXIMO, TAMANO_MAXIMO_NOMBRE));
+		Validador.validarMinLenght(primerNombre, TAMANO_MINIMO_NOMBRE, String.format(NOMBRE_DEBE_TENER_MINIMO, TAMANO_MINIMO_NOMBRE));
+		Validador.validarMaxLenght(primerApellido, TAMANO_MAXIMO_APELLIDO, String.format(APELLIDO_DEBE_TENER_MAXIMO, TAMANO_MAXIMO_APELLIDO));
+		Validador.validarMinLenght(primerApellido, TAMANO_MINIMO_APELLIDO, String.format(APELLIDO_DEBE_TENER_MINIMO, TAMANO_MINIMO_APELLIDO));
+		Validador.validarMaxLenght(email, TAMANO_MAXIMO_EMAIL, String.format(EMAIL_DEBE_TENER_MAXIMO, TAMANO_MAXIMO_EMAIL));
+		Validador.validarMinLenght(email, TAMANO_MINIMO_EMAIL, String.format(EMAIL_DEBE_TENER_MINIMO, TAMANO_MINIMO_EMAIL));
+
 		
 		this.idEmpleado = idEmpleado;
 		this.tipoDocumento = tipoDocumento;

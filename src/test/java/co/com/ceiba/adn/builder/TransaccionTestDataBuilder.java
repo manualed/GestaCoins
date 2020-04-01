@@ -46,7 +46,4 @@ public class TransaccionTestDataBuilder {
 		return new Transaccion(idEmpleado, idBonificacion, redimido, fechaObtencion, fechaRedencion);
 	}	
 
-	public static TransaccionTestDataBuilder unaTransaccion(){
-        return new TransaccionTestDataBuilder();
-    }
 }
