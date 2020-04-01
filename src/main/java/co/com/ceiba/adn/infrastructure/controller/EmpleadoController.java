@@ -13,7 +13,7 @@ import co.com.ceiba.adn.application.driver.EmpleadoDriver;
 import co.com.ceiba.adn.domain.model.entity.Empleado;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/coins")
 public class EmpleadoController {
 	
 	private final EmpleadoDriver empleadoDriver;
@@ -23,12 +23,13 @@ public class EmpleadoController {
 	}
 	
 	
-//	@GetMapping("/clientes")
-//	public List<Empleado> index() {
-//		return clienteService.findAll();
-//	}
-	@PostMapping
+	@PostMapping(value = "/empleado")
 	public void crearEmpleado(@RequestBody EmpleadoCommand empleadoCommand) {
 		this.empleadoDriver.insertarEmpleado(empleadoCommand);
+	}
+	
+	@GetMapping(value = "/listar")
+	public List<Empleado> listar() {
+		return this.empleadoDriver.listar();
 	}
 }

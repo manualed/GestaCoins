@@ -1,5 +1,7 @@
 package co.com.ceiba.adn.application.driver;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import co.com.ceiba.adn.application.command.EmpleadoCommand;
@@ -21,4 +23,9 @@ public class EmpleadoDriver {
 		Empleado empleado = this.empleadoFactory.crearEmpleado(empleadoCommand);
 		this.empleadoService.insertarEmpleado(empleado);
 	}
+	
+	public List<Empleado> listar(){
+		return this.empleadoService.listar();
+	}
+
 }

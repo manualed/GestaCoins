@@ -8,7 +8,5 @@ public interface IEmpleadoRepository {
 	
 	public void crearEmpleado(Empleado empleado);
 
-	List<Empleado> listar(String cedula);
-	
-	boolean existeEmpleado(Empleado empleado);
+	List<Empleado> listar();
 }

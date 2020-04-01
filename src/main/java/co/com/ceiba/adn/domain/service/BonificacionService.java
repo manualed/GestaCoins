@@ -4,6 +4,7 @@ import co.com.ceiba.adn.domain.model.entity.Bonificacion;
 import co.com.ceiba.adn.domain.port.repository.IBonificacionRepository;
 
 public class BonificacionService {
+	
 	private IBonificacionRepository bonificacionRepository;
 	
 	public BonificacionService(IBonificacionRepository bonificacionRepository) {
