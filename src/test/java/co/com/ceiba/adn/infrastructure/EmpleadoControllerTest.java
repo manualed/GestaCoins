@@ -85,18 +85,6 @@ public class EmpleadoControllerTest {
         		
     }
     
-    @Ignore
-    @Test
-    public void listaEmpleadosOk() throws Exception {
-    	EmpleadoCommandTestDataBuilder empleadoCommandTestDataBuilder = new EmpleadoCommandTestDataBuilder();
-    	EmpleadoCommand empleadoCommand = empleadoCommandTestDataBuilder.build();
-    	String uri = "/api/coins/listar";
-        MvcResult result = mockmvc.perform(get(uri)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andReturn();
-        result.getResponse().getContentAsString();
-        System.out.println();
-        assertEquals(JsonPath.read(result, "$[0].primerNombre"), empleadoCommand.getPrimerNombre());
-    }
+
     
 }
