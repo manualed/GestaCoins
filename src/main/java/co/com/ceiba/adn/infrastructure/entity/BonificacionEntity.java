@@ -34,6 +34,6 @@ public class BonificacionEntity implements Serializable {
 	private int tipoBonificacion;
 	
 	@OneToMany(mappedBy = "bonificacion")
-    Set<TransactionEntity> transacciones;
+    private Set<TransactionEntity> transacciones;
 	
 }

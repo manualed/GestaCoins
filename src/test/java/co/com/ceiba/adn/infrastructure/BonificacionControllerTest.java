@@ -1,5 +1,6 @@
 package co.com.ceiba.adn.infrastructure;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -76,5 +77,17 @@ public class BonificacionControllerTest {
         		.andExpect(status().isBadRequest())
         		.andExpect(jsonPath("$.excepcion").value(RequiredValueException.class.getSimpleName()));
         		
+    }
+    
+    @Test
+    public void listaBonificacionOk() throws Exception {
+    	BonificacionCommandTestDataBuilder bonificacionCommandTestDataBuilder = new BonificacionCommandTestDataBuilder();
+    	BonificacionCommand bonificacionCommand = bonificacionCommandTestDataBuilder.build();
+    	String uri = "/api/coins/bonificaciones";
+    	 this.mockmvc.perform(get(uri)
+                 .contentType(MediaType.APPLICATION_JSON)
+                 .content(objectMapper.writeValueAsString(bonificacionCommand)))
+         		.andExpect(status().isOk());
+    	
     }
 }

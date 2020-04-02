@@ -28,7 +28,7 @@ public class EmpleadoController {
 		this.empleadoDriver.insertarEmpleado(empleadoCommand);
 	}
 	
-	@GetMapping(value = "/listar")
+	@GetMapping(value = "/empleados")
 	public List<Empleado> listar() {
 		return this.empleadoDriver.listar();
 	}

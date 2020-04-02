@@ -67,7 +67,7 @@ public class EmpleadoEntity implements Serializable {
 	
 
 	@OneToMany(mappedBy = "empleado")
-    Set<TransactionEntity> transacciones;
+    private Set<TransactionEntity> transacciones;
 
 
 }

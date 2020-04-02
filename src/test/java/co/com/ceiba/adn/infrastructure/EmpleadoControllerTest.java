@@ -1,5 +1,6 @@
 package co.com.ceiba.adn.infrastructure;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -96,6 +97,17 @@ public class EmpleadoControllerTest {
         		.andExpect(jsonPath("$.mensaje").value(String.format(DOCUMENTO_DEBE_TENER_MAXIMO, TAMANO_MAXIMO_DOCUMENTO)));
     }
     
+    @Test
+    public void listaEmpleadosOk() throws Exception {
+    	EmpleadoCommandTestDataBuilder empleadoCommandTestDataBuilder = new EmpleadoCommandTestDataBuilder();
+    	EmpleadoCommand empleadoCommand = empleadoCommandTestDataBuilder.build();
+    	String uri = "/api/coins/empleados";
+    	 this.mockmvc.perform(get(uri)
+                 .contentType(MediaType.APPLICATION_JSON)
+                 .content(objectMapper.writeValueAsString(empleadoCommand)))
+         		.andExpect(status().isOk());
+    	
+    }
 
     
 }

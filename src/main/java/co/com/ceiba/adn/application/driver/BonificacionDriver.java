@@ -1,5 +1,7 @@
 package co.com.ceiba.adn.application.driver;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import co.com.ceiba.adn.application.command.BonificacionCommand;
@@ -20,5 +22,9 @@ public class BonificacionDriver {
 	public void insertarBonificacion(BonificacionCommand bonificacionCommand) {
 		Bonificacion bonificacion = this.bonificacionFactory.crearBonificacion(bonificacionCommand);
 		this.bonificacionService.insertarBonificacion(bonificacion);
+	}
+	
+	public List<Bonificacion> listar(){
+		return this.bonificacionService.listar();
 	}
 }
