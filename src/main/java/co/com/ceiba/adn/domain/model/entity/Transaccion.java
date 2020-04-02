@@ -2,10 +2,12 @@ package co.com.ceiba.adn.domain.model.entity;
 
 import java.util.Date;
 
+import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 @Setter
 @Getter
+@Generated
 public class Transaccion {
 	private static final String EMPLEADO_OBLIGATORIO = "El empleado es obligatorio.";
 	private static final String BONIFICACION_OBLIGATORIO = "La bonificacion es obligatoria.";

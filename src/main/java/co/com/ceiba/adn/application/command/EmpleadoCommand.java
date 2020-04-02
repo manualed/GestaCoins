@@ -3,6 +3,7 @@ package co.com.ceiba.adn.application.command;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Generated
 public class EmpleadoCommand {
 	private long idEmpleado;
 	private String tipoDocumento;

@@ -3,10 +3,12 @@ package co.com.ceiba.adn.domain.model.entity;
 import java.util.Date;
 import java.util.List;
 
+import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 @Setter
 @Getter
+@Generated
 public class Empleado {
 	
 	private static final String TIPO_DOCUMENTO_OBLIGATORIO = "El tipo documento es obligatorio.";

@@ -17,6 +17,7 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +25,7 @@ import lombok.Setter;
 @Table(name = "empleado")
 @Setter
 @Getter
+@Generated
 public class EmpleadoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -67,9 +69,5 @@ public class EmpleadoEntity implements Serializable {
 	@OneToMany(mappedBy = "empleado")
     Set<TransactionEntity> transacciones;
 
-	@Override
-	public String toString() {
-		return primerNombre + " " + primerApellido;
-	}
 
 }

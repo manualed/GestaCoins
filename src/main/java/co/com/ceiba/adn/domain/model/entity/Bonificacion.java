@@ -1,10 +1,12 @@
 package co.com.ceiba.adn.domain.model.entity;
 
+import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@Generated
 public class Bonificacion {
 
 	private static final String ID_BONIFICACION_OBLIGATORIO = "La bonificacion es obligatoria.";

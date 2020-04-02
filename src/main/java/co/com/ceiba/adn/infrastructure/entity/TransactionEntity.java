@@ -14,12 +14,14 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 @Entity
 @Table(name = "transaccion")
 @Setter
 @Getter
+@Generated
 public class TransactionEntity implements Serializable {
 	/**
 	 * 
