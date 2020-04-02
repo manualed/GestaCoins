@@ -4,6 +4,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Calendar;
+
 import javax.transaction.Transactional;
 
 import org.junit.Before;
@@ -48,6 +50,10 @@ public class TransactionControllerTest {
 		// Arrange
 		TransaccionCommandTestDataBuilder transaccionCommandTestDataBuilder = new TransaccionCommandTestDataBuilder();
 		transaccionCommandTestDataBuilder.esRedimido(false);
+		transaccionCommandTestDataBuilder.conFechaObtencion(new Calendar.Builder().setDate(2020, 3, 1).build().getTime());
+		transaccionCommandTestDataBuilder.conFechaRedencion(new Calendar.Builder().setDate(2020, 9, 1).build().getTime());
+		transaccionCommandTestDataBuilder.conIdBonificacion(987478746L);
+		transaccionCommandTestDataBuilder.conIdEmpleado(9867464554L);
 		TransaccionCommand transaccionCommand = transaccionCommandTestDataBuilder.build();
 
 		// Act - Assert

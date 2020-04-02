@@ -51,6 +51,8 @@ public class BonificacionControllerTest {
     	bonificacionCommandTestDataBuilder.conCodigoBonificacion("M0009");
     	bonificacionCommandTestDataBuilder.conIdBonificacion(5L);
     	bonificacionCommandTestDataBuilder.conNombreBonificacion("INCEPCION PROCESO");
+    	bonificacionCommandTestDataBuilder.conTipoBonificacion(0);
+    	bonificacionCommandTestDataBuilder.conValorBonificacion(150000);
     	BonificacionCommand bonificacionCommand = bonificacionCommandTestDataBuilder.build();
        
         // Act - Assert

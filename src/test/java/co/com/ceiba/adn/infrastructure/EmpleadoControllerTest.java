@@ -54,6 +54,13 @@ public class EmpleadoControllerTest {
         // Arrange
     	EmpleadoCommandTestDataBuilder empleadoCommandTestDataBuilder = new EmpleadoCommandTestDataBuilder();
     	empleadoCommandTestDataBuilder.conFechaIngreso(new Calendar.Builder().setDate(2012, 6, 4).build().getTime());
+    	empleadoCommandTestDataBuilder.conEmail("manu.ginobili@ceiba.com.co");
+    	empleadoCommandTestDataBuilder.conFechaCambio(new Calendar.Builder().setDate(2020, 3, 1).build().getTime());
+    	empleadoCommandTestDataBuilder.conFechaNacimiento(new Calendar.Builder().setDate(2000, 6, 4).build().getTime());
+    	empleadoCommandTestDataBuilder.conNumeroDocumento("883839289");
+    	empleadoCommandTestDataBuilder.conTipoDocumento("CE");
+    	empleadoCommandTestDataBuilder.conPrimerApellido("GINOBILI");
+    	empleadoCommandTestDataBuilder.conPrimerNombre("MANUEL");
     	EmpleadoCommand empleadoCommand = empleadoCommandTestDataBuilder.build();
        
         // Act - Assert

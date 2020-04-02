@@ -18,7 +18,7 @@ public class TransaccionController {
 	}
 
 	@PostMapping(value = "/transaccion")
-	public void crearEmpleado(@RequestBody TransaccionCommand transaccionCommand) {
+	public void crearTransaccion(@RequestBody TransaccionCommand transaccionCommand) {
 		this.transaccionDriver.insertarTransaccion(transaccionCommand);
 	}
 }
