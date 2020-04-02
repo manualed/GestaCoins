@@ -22,8 +22,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import co.com.ceiba.adn.application.EmpleadoCommandTestDataBuilder;
 import co.com.ceiba.adn.application.command.EmpleadoCommand;
+import co.com.ceiba.adn.databuilder.EmpleadoCommandTestDataBuilder;
+import co.com.ceiba.adn.domain.exception.MaximumLenghtException;
 import co.com.ceiba.adn.domain.exception.RequiredValueException;
 
 @RunWith(SpringRunner.class)
@@ -31,7 +32,8 @@ import co.com.ceiba.adn.domain.exception.RequiredValueException;
 @AutoConfigureMockMvc
 @Transactional
 public class EmpleadoControllerTest {
-	
+	private static final String DOCUMENTO_DEBE_TENER_MAXIMO = "El documento debe tener maximo %s caracteres.";
+	private static final int TAMANO_MAXIMO_DOCUMENTO = 50;
 	@Autowired
 	private MockMvc mockmvc;
 
@@ -76,6 +78,22 @@ public class EmpleadoControllerTest {
         		.andExpect(status().isBadRequest())
         		.andExpect(jsonPath("$.excepcion").value(RequiredValueException.class.getSimpleName()));
         		
+    }
+    
+    @Test
+    public void crearConCedulaDeLongitudMaxima() throws Exception {
+        // Arrange
+    	EmpleadoCommandTestDataBuilder empleadoCommandTestDataBuilder = new EmpleadoCommandTestDataBuilder();
+    	empleadoCommandTestDataBuilder.conFechaIngreso(new Calendar.Builder().setDate(2012, 6, 4).build().getTime());
+    	empleadoCommandTestDataBuilder.conNumeroDocumento("98475983479387459384759028347598324752938457902384759032485798345");
+    	EmpleadoCommand empleadoCommand = empleadoCommandTestDataBuilder.build();
+        // Act - Assert
+        this.mockmvc.perform(post("/api/coins/empleado")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(empleadoCommand)))
+        		.andExpect(status().isBadRequest())
+        		.andExpect(jsonPath("$.excepcion").value(MaximumLenghtException.class.getSimpleName()))
+        		.andExpect(jsonPath("$.mensaje").value(String.format(DOCUMENTO_DEBE_TENER_MAXIMO, TAMANO_MAXIMO_DOCUMENTO)));
     }
     
 

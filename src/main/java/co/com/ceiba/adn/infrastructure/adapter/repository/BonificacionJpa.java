@@ -21,6 +21,7 @@ public class BonificacionJpa implements IBonificacionRepository{
 	
 	@Override
 	public void crearBonificacion(Bonificacion bonificacion) {
+		modelMapper.getConfiguration().setAmbiguityIgnored(true);
 		BonificacionEntity bonificacionEntity = modelMapper.map(bonificacion, BonificacionEntity.class);
 		bonificacionJpaRepository.save(bonificacionEntity);
 	}

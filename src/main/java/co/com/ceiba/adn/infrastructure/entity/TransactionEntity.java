@@ -27,7 +27,7 @@ public class TransactionEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private long id;
+	private long idTransaccion;
 	
 	@ManyToOne
     @JoinColumn(name = "idEmpleado")

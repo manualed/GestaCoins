@@ -1,6 +1,5 @@
 package co.com.ceiba.adn.domain.model.entity;
 
-import co.com.ceiba.adn.domain.exception.LenghtValueException;
 import co.com.ceiba.adn.domain.exception.MaximumLenghtException;
 import co.com.ceiba.adn.domain.exception.MinimumLenghtException;
 import co.com.ceiba.adn.domain.exception.RangeException;
@@ -18,27 +17,9 @@ public class Validador {
 		}
 	}
 
-	public static void validarLongitud(String valor, int longitud, String mensaje) {
-		if (valor.length() < longitud) {
-			throw new LenghtValueException(mensaje);
-		}
-	}
-
 	public static void validarValorValido(Long valor, Long valorPermitido, String mensaje) {
 		if (valor < valorPermitido) {
 			throw new ValidValueException(mensaje);
-		}
-	}
-
-	public static void validarValorValido(int valor, int valorPermitido, String mensaje) {
-		if (valor < valorPermitido) {
-			throw new ValidValueException(mensaje);
-		}
-	}
-
-	public static void validarRangoValido(long valor, long valorPermitido, String mensaje) {
-		if (valor < valorPermitido) {
-			throw new RangeException(mensaje);
 		}
 	}
 
@@ -53,16 +34,16 @@ public class Validador {
 			throw new RangeException(mensaje);
 		}
 	}
-	
+
 	public static void validarMaxLenght(String size, int maxLenght, String mensaje) {
-        if(size.length() > maxLenght) {
-            throw new MaximumLenghtException(mensaje);
-        }
-    }
-	
+		if (size.length() > maxLenght) {
+			throw new MaximumLenghtException(mensaje);
+		}
+	}
+
 	public static void validarMinLenght(String value, int minLenght, String mensaje) {
-        if(value.length() <= minLenght) {
-            throw new MinimumLenghtException(mensaje);
-        }
-    }
+		if (value.length() <= minLenght) {
+			throw new MinimumLenghtException(mensaje);
+		}
+	}
 }

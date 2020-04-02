@@ -8,6 +8,6 @@ public interface ITransaccionRepository {
 
 	public void crearTransaccion(Transaccion transaccion);
 
-	List<Transaccion> listar(String cedula);
+	List<Transaccion> listar();
 
 }

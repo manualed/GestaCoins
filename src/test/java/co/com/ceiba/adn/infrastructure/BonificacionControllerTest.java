@@ -1,6 +1,7 @@
 package co.com.ceiba.adn.infrastructure;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import javax.transaction.Transactional;
@@ -19,8 +20,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import co.com.ceiba.adn.application.BonificacionCommandTestDataBuilder;
 import co.com.ceiba.adn.application.command.BonificacionCommand;
+import co.com.ceiba.adn.databuilder.BonificacionCommandTestDataBuilder;
+import co.com.ceiba.adn.domain.exception.RequiredValueException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -56,5 +58,23 @@ public class BonificacionControllerTest {
                 .content(objectMapper.writeValueAsString(bonificacionCommand)))
         		.andExpect(status().isOk());
         
+    }
+    
+    @Test
+    public void crearConDatosNulos() throws Exception {
+        // Arrange
+    	BonificacionCommandTestDataBuilder bonificacionCommandTestDataBuilder = new BonificacionCommandTestDataBuilder();
+    	bonificacionCommandTestDataBuilder.conCodigoBonificacion(null);
+    	bonificacionCommandTestDataBuilder.conIdBonificacion(5L);
+    	bonificacionCommandTestDataBuilder.conNombreBonificacion(null);
+    	BonificacionCommand empleadoCommand = bonificacionCommandTestDataBuilder.build();
+ 
+        // Act - Assert
+        this.mockmvc.perform(post("/api/coins/empleado")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(empleadoCommand)))
+        		.andExpect(status().isBadRequest())
+        		.andExpect(jsonPath("$.excepcion").value(RequiredValueException.class.getSimpleName()));
+        		
     }
 }

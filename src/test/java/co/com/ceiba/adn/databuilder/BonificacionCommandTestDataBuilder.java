@@ -1,4 +1,4 @@
-package co.com.ceiba.adn.application;
+package co.com.ceiba.adn.databuilder;
 
 import co.com.ceiba.adn.application.command.BonificacionCommand;
 

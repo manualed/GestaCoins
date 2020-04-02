@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import co.com.ceiba.adn.domain.model.entity.Empleado;
 import co.com.ceiba.adn.domain.port.repository.IEmpleadoRepository;
-import co.com.ceiba.adn.infrastructure.adapter.mapper.Mapper;
+import co.com.ceiba.adn.infrastructure.adapter.mapper.MapperEmpleado;
 import co.com.ceiba.adn.infrastructure.entity.EmpleadoEntity;
 @Repository
 public class EmpleadoJpa implements IEmpleadoRepository{
@@ -17,13 +17,14 @@ public class EmpleadoJpa implements IEmpleadoRepository{
 	@Autowired
 	private final IEmpleadoJpa empleadoJpaRepository;
 	
-	private Mapper mapper = new Mapper();
+	private MapperEmpleado mapper = new MapperEmpleado();
 	
 	public EmpleadoJpa(IEmpleadoJpa empleadoJpa) {
 		this.empleadoJpaRepository = empleadoJpa;
 	}
 	@Override
 	public void crearEmpleado(Empleado empleado) {
+		modelMapper.getConfiguration().setAmbiguityIgnored(true);
 		EmpleadoEntity empleadoEntity = modelMapper.map(empleado, EmpleadoEntity.class);
 		empleadoJpaRepository.save(empleadoEntity);
 		

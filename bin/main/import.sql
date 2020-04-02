@@ -3,5 +3,5 @@ CREATE TABLE IF NOT EXISTS empleado (idEmpleado numeric,tipoDocumento varchar(3)
 
 CREATE TABLE IF NOT EXISTS bonificacion (id_bonificacion numeric, codigoBonificacion varchar(10), nombreBonificacion varchar(100), valorBonificacion numeric(10), tipoBonificacion numeric(1) );
 
-CREATE TABLE IF NOT EXISTS transaccion (id numeric, idEmpleado numeric, idBonificacion numeric, redimido boolean, fechaObtencion date, fechaRedencion date);
+CREATE TABLE IF NOT EXISTS transaccion (idTransaccion numeric, idEmpleado numeric, idBonificacion numeric, redimido boolean, fechaObtencion date, fechaRedencion date);
 

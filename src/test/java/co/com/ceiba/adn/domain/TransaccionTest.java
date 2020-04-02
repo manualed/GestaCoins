@@ -11,11 +11,6 @@ import co.com.ceiba.adn.domain.model.entity.Transaccion;
 
 
 class TransaccionTest {
-	//id numeric, idEmpleado numeric, idBonificacion numeric, redimido boolean, fechaObtencion date, fechaRedencion date
-	
-	private static final String EMPLEADO_OBLIGATORIO = "El empleado es obligatorio.";
-	private static final String BONIFICACION_OBLIGATORIO = "La bonificacion es obligatoria.";
-	private static final String REDIMIDO_OBLIGATORIO = "El campo redimido es obligatorio.";
 	private static final String FECHA_OBTENCION_OBLIGATORIO = "La fecha de obtencion es obligatoria.";	
 	
 	private static final String VALOR_IDBONIFICACION_DEBE_SER_MAYOR_A = "El id de la bonificacion debe ser mayor que %s";

@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 import co.com.ceiba.adn.domain.model.entity.Empleado;
 import co.com.ceiba.adn.infrastructure.entity.EmpleadoEntity;
 
-public class Mapper {
+public class MapperEmpleado {
     public List<Empleado> entityToModelList(List<EmpleadoEntity> entityList){
-        return entityList.stream().map(Mapper::valueOfModel).collect(Collectors.toList());
+        return entityList.stream().map(MapperEmpleado::valueOfModel).collect(Collectors.toList());
     }
     
     private static Empleado valueOfModel(EmpleadoEntity entity){
@@ -16,5 +16,6 @@ public class Mapper {
         		entity.getPrimerNombre(), entity.getPrimerApellido(), entity.getFechaIngreso(), entity.getFechaNacimiento(), 
         		entity.getFechaCambio(), entity.getEmail());
     }
+
 }
 

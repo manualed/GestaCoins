@@ -6,8 +6,10 @@ import org.springframework.context.annotation.Configuration;
 
 import co.com.ceiba.adn.domain.port.repository.IBonificacionRepository;
 import co.com.ceiba.adn.domain.port.repository.IEmpleadoRepository;
+import co.com.ceiba.adn.domain.port.repository.ITransaccionRepository;
 import co.com.ceiba.adn.domain.service.BonificacionService;
 import co.com.ceiba.adn.domain.service.EmpleadoService;
+import co.com.ceiba.adn.domain.service.TransaccionService;
 
 @Configuration
 public class ConfigurationBeans {
@@ -20,18 +22,14 @@ public class ConfigurationBeans {
         return new EmpleadoService(empleadoRepository);
     }
 	
-//	@Bean
-//	public TransaccionService servicioCrearCompra(ITransaccionRepository transaccionRepository) {
-//		return new TransaccionService(transaccionRepository);
-//	}
+	@Bean
+	public TransaccionService servicioCrearCompra(ITransaccionRepository transaccionRepository) {
+		return new TransaccionService(transaccionRepository);
+	}
 	
 	@Bean
 	public ModelMapper modelMapper() {
 	    return new ModelMapper();
 	}
 	
-//	@Bean
-//	public Mapper mapper() {
-//		return new Mapper();
-//	}
 }
