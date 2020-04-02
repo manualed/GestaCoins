@@ -23,9 +23,7 @@ import lombok.Setter;
 @Getter
 @Generated
 public class TransactionEntity implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Id

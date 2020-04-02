@@ -1,9 +1,5 @@
 package co.com.ceiba.adn.infrastructure.error;
 
-import lombok.Generated;
-import lombok.Getter;
-@Generated
-@Getter
 public class Error {
 	private String excepcion;
     private String mensaje;
@@ -13,4 +9,11 @@ public class Error {
         this.mensaje = mensaje;
     }
 
+    public String getExcepcion() {
+        return excepcion;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
 }
