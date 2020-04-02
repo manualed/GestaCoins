@@ -2,11 +2,13 @@ package co.com.ceiba.adn.application.command;
 
 import java.util.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Generated;
+import lombok.Getter;
+import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@Generated
+@Setter
+@Getter
 public class TransaccionCommand {
 	private long idEmpleado;
 	private long idBonificacion;
@@ -14,44 +16,16 @@ public class TransaccionCommand {
 	private Date fechaObtencion;
 	private Date fechaRedencion;
 
-	public long getIdEmpleado() {
-		return idEmpleado;
-	}
-
-	public void setIdEmpleado(long idEmpleado) {
+	public TransaccionCommand(long idEmpleado, long idBonificacion, boolean redimido, Date fechaObtencion,
+			Date fechaRedencion) {
 		this.idEmpleado = idEmpleado;
-	}
-
-	public long getIdBonificacion() {
-		return idBonificacion;
-	}
-
-	public void setIdBonificacion(long idBonificacion) {
 		this.idBonificacion = idBonificacion;
-	}
-
-	public boolean isRedimido() {
-		return redimido;
-	}
-
-	public void setRedimido(boolean redimido) {
 		this.redimido = redimido;
-	}
-
-	public Date getFechaObtencion() {
-		return fechaObtencion;
-	}
-
-	public void setFechaObtencion(Date fechaObtencion) {
 		this.fechaObtencion = fechaObtencion;
-	}
-
-	public Date getFechaRedencion() {
-		return fechaRedencion;
-	}
-
-	public void setFechaRedencion(Date fechaRedencion) {
 		this.fechaRedencion = fechaRedencion;
+	}
+
+	public TransaccionCommand() {
 	}
 
 }
