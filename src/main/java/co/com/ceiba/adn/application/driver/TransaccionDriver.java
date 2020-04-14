@@ -1,5 +1,7 @@
 package co.com.ceiba.adn.application.driver;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import co.com.ceiba.adn.application.command.TransaccionCommand;
@@ -19,5 +21,22 @@ public class TransaccionDriver {
 	public void insertarTransaccion(TransaccionCommand transaccionCommand) {
 		Transaccion transaccion = this.transaccionFactory.crearTransaccion(transaccionCommand);
 		this.transaccionService.insertarTransaccion(transaccion);
+	}
+	
+	public List<Transaccion> listar(){
+		return this.transaccionService.listar();
+	}
+	
+	public void eliminar(long id) {
+		this.transaccionService.eliminar(id);
+	}
+	
+	public Transaccion obtenerTransaccion(long id) {
+		return this.transaccionService.obtenerTransaccion(id);
+	}
+	
+	public void update(TransaccionCommand transaccionCommand) {
+		Transaccion transaccion = this.transaccionFactory.crearTransaccion(transaccionCommand);
+		this.transaccionService.updateTransaccion(transaccion);
 	}
 }

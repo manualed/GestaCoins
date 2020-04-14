@@ -27,5 +27,18 @@ public class EmpleadoDriver {
 	public List<Empleado> listar(){
 		return this.empleadoService.listar();
 	}
+	
+	public void eliminar(long id) {
+		this.empleadoService.eliminar(id);
+	}
+	
+	public Empleado obtenerEmpleado(long id) {
+		return this.empleadoService.obtenerEmpleado(id);
+	}
+	
+	public void update(EmpleadoCommand empleadoCommand) {
+		Empleado empleado = this.empleadoFactory.crearEmpleado(empleadoCommand);
+		this.empleadoService.updateEmpleado(empleado);
+	}
 
 }

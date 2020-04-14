@@ -1,8 +1,16 @@
 package co.com.ceiba.adn.domain.model.entity;
 
+import java.time.Instant;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import lombok.Generated;
+import lombok.Getter;
+import lombok.Setter;
+@Generated
+@Setter
+@Getter
 public class Empleado {
 	
 	private static final String TIPO_DOCUMENTO_OBLIGATORIO = "El tipo documento es obligatorio.";
@@ -46,12 +54,14 @@ public class Empleado {
 	public Empleado(long idEmpleado, String tipoDocumento, String numeroDocumento, String primerNombre,
 			String primerApellido, Date fechaIngreso, Date fechaNacimiento, Date fechaCambio, String email) {
 		
+		
 		Validador.validarObligatoriedad(tipoDocumento, TIPO_DOCUMENTO_OBLIGATORIO);
 		Validador.validarObligatoriedad(numeroDocumento, NUMERO_DOCUMENTO_OBLIGATORIO);
 		Validador.validarObligatoriedad(primerNombre, PRIMER_NOMBRE_OBLIGATORIO);
 		Validador.validarObligatoriedad(primerApellido, PRIMER_APELLIDO_OBLIGATORIO);
 		Validador.validarObligatoriedad(fechaIngreso, FECHA_INGRESO_OBLIGATORIO);
 		Validador.validarObligatoriedad(fechaNacimiento, FECHA_NACIMIENTO_OBLIGATORIO);
+		//Validador.validarObligatoriedad(new Calendar.Builder().setInstant(Instant.now().getEpochSecond()).build().getTime(), FECHA_CAMBIO_OBLIGATORIO);
 		Validador.validarObligatoriedad(fechaCambio, FECHA_CAMBIO_OBLIGATORIO);
 		Validador.validarObligatoriedad(email, EMAIL_OBLIGATORIO);
 		
@@ -72,7 +82,7 @@ public class Empleado {
 		this.primerApellido = primerApellido;
 		this.fechaIngreso = fechaIngreso;
 		this.fechaNacimiento = fechaNacimiento;
-		this.fechaCambio = fechaCambio;
+		this.fechaCambio = new Calendar.Builder().setInstant(Instant.now().getEpochSecond()).build().getTime();
 		this.email = email;
 	}
 
@@ -133,7 +143,7 @@ public class Empleado {
 	}
 
 	public Date getFechaCambio() {
-		return fechaCambio;
+		return new Date(fechaCambio.getTime());
 	}
 
 	public void setFechaCambio(Date fechaCambio) {

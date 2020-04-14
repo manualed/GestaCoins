@@ -3,6 +3,7 @@ package co.com.ceiba.adn.infrastructure.configuration;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import co.com.ceiba.adn.domain.port.repository.IBonificacionRepository;
 import co.com.ceiba.adn.domain.port.repository.IEmpleadoRepository;
@@ -12,6 +13,7 @@ import co.com.ceiba.adn.domain.service.EmpleadoService;
 import co.com.ceiba.adn.domain.service.TransaccionService;
 
 @Configuration
+@EnableWebMvc
 public class ConfigurationBeans {
 	@Bean
     public BonificacionService bonificacionService(IBonificacionRepository bonificacionRepository){

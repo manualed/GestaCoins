@@ -1,10 +1,10 @@
 package co.com.ceiba.adn.infrastructure;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.Calendar;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,12 +23,17 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import co.com.ceiba.adn.CoinsApplication;
+import co.com.ceiba.adn.application.command.BonificacionCommand;
+import co.com.ceiba.adn.application.command.EmpleadoCommand;
 import co.com.ceiba.adn.application.command.TransaccionCommand;
+import co.com.ceiba.adn.databuilder.BonificacionCommandTestDataBuilder;
+import co.com.ceiba.adn.databuilder.EmpleadoCommandTestDataBuilder;
 import co.com.ceiba.adn.databuilder.TransaccionCommandTestDataBuilder;
 import co.com.ceiba.adn.domain.exception.RequiredValueException;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = WebEnvironment.MOCK, classes = { CoinsApplication.class })
 @AutoConfigureMockMvc
 @Transactional
 public class TransactionControllerTest {
@@ -45,22 +51,6 @@ public class TransactionControllerTest {
 		this.mockmvc = MockMvcBuilders.webAppContextSetup(this.context).build();
 	}
 
-	@Test
-	public void crearTransaccion() throws Exception {
-		// Arrange
-		TransaccionCommandTestDataBuilder transaccionCommandTestDataBuilder = new TransaccionCommandTestDataBuilder();
-		transaccionCommandTestDataBuilder.esRedimido(false);
-		transaccionCommandTestDataBuilder.conFechaObtencion(new Calendar.Builder().setDate(2020, 3, 1).build().getTime());
-		transaccionCommandTestDataBuilder.conFechaRedencion(new Calendar.Builder().setDate(2020, 9, 1).build().getTime());
-		transaccionCommandTestDataBuilder.conIdBonificacion(987478746L);
-		transaccionCommandTestDataBuilder.conIdEmpleado(9867464554L);
-		TransaccionCommand transaccionCommand = transaccionCommandTestDataBuilder.build();
-
-		// Act - Assert
-		this.mockmvc.perform(post("/api/coins/transaccion").contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(transaccionCommand))).andExpect(status().isOk());
-
-	}
 
 	@Test
 	public void crearTransaccionConDatosNulos() throws Exception {
@@ -78,4 +68,44 @@ public class TransactionControllerTest {
 				.andExpect(jsonPath("$.excepcion").value(RequiredValueException.class.getSimpleName()));
 
 	}
+
+	@Test
+	public void listaTransaccionOk() throws Exception {
+		TransaccionCommandTestDataBuilder transaccionCommandTestDataBuilder = new TransaccionCommandTestDataBuilder();
+		TransaccionCommand transaccionCommand = transaccionCommandTestDataBuilder.build();
+		String uri = "/api/coins/transacciones";
+		this.mockmvc.perform(get(uri).contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(transaccionCommand))).andExpect(status().isOk());
+
+	}
+
+
+	@Test
+	public void validarUpdateFailedTransaccion() throws Exception {
+		// Arrange
+		BonificacionCommandTestDataBuilder bonificacionCommandTestDataBuilder = new BonificacionCommandTestDataBuilder();
+		bonificacionCommandTestDataBuilder.conIdBonificacion(2);
+		BonificacionCommand bonificacionCommand = bonificacionCommandTestDataBuilder.build();
+		EmpleadoCommandTestDataBuilder empleadoCommandTestDataBuilder = new EmpleadoCommandTestDataBuilder();
+		empleadoCommandTestDataBuilder.conIdEmpleado(2);
+		EmpleadoCommand empleadoCommand = empleadoCommandTestDataBuilder.build();
+		TransaccionCommandTestDataBuilder transaccionCommandTestDataBuilder = new TransaccionCommandTestDataBuilder();
+		transaccionCommandTestDataBuilder.esRedimido(false);
+		transaccionCommandTestDataBuilder.conFechaObtencion(null);
+		transaccionCommandTestDataBuilder.conFechaRedencion(null);
+		transaccionCommandTestDataBuilder.conIdBonificacion(2);
+		transaccionCommandTestDataBuilder.conIdEmpleado(2);
+		transaccionCommandTestDataBuilder.conIdTransaccion(1);
+		transaccionCommandTestDataBuilder.conBonificacionCommand(bonificacionCommand);
+		transaccionCommandTestDataBuilder.conEmpleadoCommand(empleadoCommand);
+		TransaccionCommand transaccionCommand = transaccionCommandTestDataBuilder.build();
+		this.mockmvc.perform(put("/api/coins/transaccion/{id}", transaccionCommand.getIdEmpleado())
+				.contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(transaccionCommand)))
+				.andExpect(status().isBadRequest());
+	}
+
+	
+ 
+
+
 }

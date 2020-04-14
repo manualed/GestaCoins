@@ -10,6 +10,7 @@ public class BonificacionCommandTestDataBuilder {
 	private int tipoBonificacion;
 
 	public BonificacionCommandTestDataBuilder() {
+		this.idBonificacion =1;
 		this.codigoBonificacion = "103020";
 		this.nombreBonificacion = "BONO CUMPLE";
 		this.valorBonificacion = 150000L;

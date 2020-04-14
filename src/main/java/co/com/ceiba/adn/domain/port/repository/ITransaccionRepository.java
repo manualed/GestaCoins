@@ -9,5 +9,11 @@ public interface ITransaccionRepository {
 	public void crearTransaccion(Transaccion transaccion);
 
 	List<Transaccion> listar();
+	
+	void eliminar(long id);
+	
+	Transaccion obtenerTransaccion(long id);
+	
+	public void updateTransaccion(Transaccion transaccion);
 
 }

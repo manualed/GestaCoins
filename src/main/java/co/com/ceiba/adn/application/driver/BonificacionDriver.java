@@ -27,4 +27,17 @@ public class BonificacionDriver {
 	public List<Bonificacion> listar(){
 		return this.bonificacionService.listar();
 	}
+	
+	public void eliminar(long id) {
+		this.bonificacionService.eliminar(id);
+	}
+	
+	public Bonificacion obtenerBonificacion(long id) {
+		return this.bonificacionService.obtenerBonificacion(id);
+	}
+	
+	public void update(BonificacionCommand bonificacionCommand) {
+		Bonificacion bonificacion = this.bonificacionFactory.crearBonificacion(bonificacionCommand);
+		this.bonificacionService.updateBonificacion(bonificacion);
+	}
 }

@@ -10,4 +10,10 @@ public interface IBonificacionRepository {
 	
 	List<Bonificacion> listar();
 	
+	void eliminar(long id);
+	
+	Bonificacion obtenerBonificacion(long id);
+	
+	public void updateBonificacion(Bonificacion bonificacion);
+	
 }

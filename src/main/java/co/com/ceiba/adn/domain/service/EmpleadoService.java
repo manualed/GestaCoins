@@ -22,4 +22,14 @@ public class EmpleadoService {
 		return this.empleadoRepository.listar();
 	}
 	
+	public void eliminar(long id) {
+		this.empleadoRepository.eliminar(id);
+	}
+	
+	public Empleado obtenerEmpleado(long id) {
+		return this.empleadoRepository.obtenerEmpleado(id);
+	}
+	public void updateEmpleado(Empleado empleado) {
+		this.empleadoRepository.updateEmpleado(empleado);
+	}
 }

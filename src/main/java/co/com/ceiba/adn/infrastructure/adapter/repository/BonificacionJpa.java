@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import co.com.ceiba.adn.application.command.BonificacionCommand;
 import co.com.ceiba.adn.domain.model.entity.Bonificacion;
 import co.com.ceiba.adn.domain.port.repository.IBonificacionRepository;
 import co.com.ceiba.adn.infrastructure.adapter.mapper.MapperBonificacion;
@@ -28,13 +29,39 @@ public class BonificacionJpa implements IBonificacionRepository{
 	public void crearBonificacion(Bonificacion bonificacion) {
 		modelMapper.getConfiguration().setAmbiguityIgnored(true);
 		BonificacionEntity bonificacionEntity = modelMapper.map(bonificacion, BonificacionEntity.class);
-		bonificacionJpaRepository.save(bonificacionEntity);
+		this.bonificacionJpaRepository.save(bonificacionEntity);
 	}
 
 	@Override
 	public List<Bonificacion> listar() {
         List<BonificacionEntity> bonificacionEntity = this.bonificacionJpaRepository.findAll();
         return this.mapper.entityToModelList(bonificacionEntity);
+	}
+	
+	@Override
+	public void eliminar(long id) {
+		this.bonificacionJpaRepository.deleteById(id);
+		
+	}
+	
+	@Override
+	public Bonificacion obtenerBonificacion(long id) {
+		modelMapper.getConfiguration().setAmbiguityIgnored(true);
+		BonificacionEntity entity = this.bonificacionJpaRepository.findById(id);
+		BonificacionCommand bonificacionCommand = modelMapper.map(entity, BonificacionCommand.class);
+		return new Bonificacion(bonificacionCommand.getIdBonificacion(),
+				bonificacionCommand.getCodigoBonificacion(), 
+				bonificacionCommand.getNombreBonificacion(), 
+				bonificacionCommand.getValorBonificacion(),
+				bonificacionCommand.getTipoBonificacion());
+	}
+	
+	@Override
+	public void updateBonificacion(Bonificacion bonificacion) {
+		modelMapper.getConfiguration().setAmbiguityIgnored(true);
+		BonificacionEntity bonificacionEntity = modelMapper.map(bonificacion, BonificacionEntity.class);
+		this.bonificacionJpaRepository.save(bonificacionEntity);
+		
 	}
 
 }

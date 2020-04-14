@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Generated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +19,7 @@ import lombok.Setter;
 @Table(name = "bonificacion")
 @Setter
 @Getter
+@Generated
 public class BonificacionEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +36,7 @@ public class BonificacionEntity implements Serializable {
 	
 	private int tipoBonificacion;
 	
-	@OneToMany(mappedBy = "bonificacion")
+	@OneToMany(mappedBy = "bonificacion" , fetch = FetchType.LAZY)
     private Set<TransactionEntity> transacciones;
 	
 }

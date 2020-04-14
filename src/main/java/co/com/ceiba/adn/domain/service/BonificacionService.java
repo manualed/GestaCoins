@@ -20,4 +20,14 @@ public class BonificacionService {
 	public List<Bonificacion> listar() {
 		return this.bonificacionRepository.listar();
 	}
+	public void eliminar(long id) {
+		this.bonificacionRepository.eliminar(id);
+	}
+	
+	public Bonificacion obtenerBonificacion(long id) {
+		return this.bonificacionRepository.obtenerBonificacion(id);
+	}
+	public void updateBonificacion(Bonificacion bonificacion) {
+		this.bonificacionRepository.updateBonificacion(bonificacion);
+	}
 }
