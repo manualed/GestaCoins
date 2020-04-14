@@ -1,0 +1,3 @@
+[submodule "adn-coins"]
+	path = adn-coins
+	url = https://github.com/manualed/GestaCoins.git
