@@ -36,7 +36,7 @@ public class TransactionTest {
 	BonificacionFactory bonificacionFactory = new BonificacionFactory();
 	EmpleadoFactory empleadoFactory = new EmpleadoFactory();
 	TransaccionDriver transaccionDriver = new TransaccionDriver(transaccionService,
-			new TransaccionFactory(empleadoFactory, bonificacionFactory));
+			new TransaccionFactory());
 	TransaccionController transaccionController = new TransaccionController(transaccionDriver);
 	TransaccionCommand transaccionCommand = new TransaccionCommand();
 

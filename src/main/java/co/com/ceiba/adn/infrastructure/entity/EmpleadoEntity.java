@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -75,7 +76,8 @@ public class EmpleadoEntity implements Serializable {
 		fechaCambio = new Date();
 	}
 
-	@OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY)
+
+	@OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<TransactionEntity> transacciones;
 
 }

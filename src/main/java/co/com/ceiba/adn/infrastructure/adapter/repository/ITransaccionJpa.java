@@ -12,7 +12,7 @@ import co.com.ceiba.adn.infrastructure.entity.TransactionEntity;
 @Repository
 public interface ITransaccionJpa extends JpaRepository<TransactionEntity, Long> {
 	
-	@Query(value="select * FROM transaccion t LEFT JOIN empleado e  ",  nativeQuery = true)
+	@Query(value="SELECT * FROM TRANSACCION E JOIN EMPLEADO D ON E.ID_EMPLEADO= D.ID_EMPLEADO",  nativeQuery = true)
 	public List<TransactionEntity> listarTransaccion();
 		
 	TransactionEntity findById(@Param("id") long id);

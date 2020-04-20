@@ -16,6 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
@@ -42,7 +44,7 @@ public class TransactionEntity implements Serializable {
     @JoinColumn(name = "idEmpleado")
     EmpleadoEntity empleado;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idBonificacion")
     BonificacionEntity bonificacion;
 	

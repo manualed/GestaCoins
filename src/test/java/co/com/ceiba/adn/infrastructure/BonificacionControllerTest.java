@@ -8,6 +8,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Calendar;
+
 import javax.transaction.Transactional;
 
 import org.junit.Before;
@@ -26,10 +28,12 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.com.ceiba.adn.application.command.BonificacionCommand;
+import co.com.ceiba.adn.application.command.EmpleadoCommand;
 import co.com.ceiba.adn.application.driver.BonificacionDriver;
 import co.com.ceiba.adn.application.factory.BonificacionFactory;
 import co.com.ceiba.adn.builder.BonificacionTestDataBuilder;
 import co.com.ceiba.adn.databuilder.BonificacionCommandTestDataBuilder;
+import co.com.ceiba.adn.databuilder.EmpleadoCommandTestDataBuilder;
 import co.com.ceiba.adn.domain.exception.RequiredValueException;
 import co.com.ceiba.adn.domain.model.entity.Bonificacion;
 import co.com.ceiba.adn.domain.port.repository.IBonificacionRepository;
@@ -77,7 +81,7 @@ public class BonificacionControllerTest {
 		// Arrange
 		BonificacionCommandTestDataBuilder bonificacionCommandTestDataBuilder = new BonificacionCommandTestDataBuilder();
 		bonificacionCommandTestDataBuilder.conCodigoBonificacion("M0009");
-		bonificacionCommandTestDataBuilder.conIdBonificacion(2);
+		bonificacionCommandTestDataBuilder.conIdBonificacion(1);
 		bonificacionCommandTestDataBuilder.conNombreBonificacion("INCEPCION PROCESO");
 		bonificacionCommandTestDataBuilder.conTipoBonificacion(0);
 		bonificacionCommandTestDataBuilder.conValorBonificacion(150000);
@@ -150,6 +154,28 @@ public class BonificacionControllerTest {
 		mockmvc.perform(put("/api/coins/bonificacion/{id}", bonificacionCommand.getIdBonificacion())
 				.contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(bonificacionCommand)))
 				.andExpect(status().isBadRequest());
+	}
+	
+	@Test
+	public void obtenerBonificacionOk() throws Exception {
+		// Arrange
+		BonificacionCommandTestDataBuilder bonificacionCommandTestDataBuilder = new BonificacionCommandTestDataBuilder();
+		bonificacionCommandTestDataBuilder.conCodigoBonificacion("M0009");
+		bonificacionCommandTestDataBuilder.conIdBonificacion(1);
+		bonificacionCommandTestDataBuilder.conNombreBonificacion("INCEPCION PROCESO");
+		bonificacionCommandTestDataBuilder.conTipoBonificacion(0);
+		bonificacionCommandTestDataBuilder.conValorBonificacion(150000);
+		BonificacionCommand bonificacionCommand = bonificacionCommandTestDataBuilder.build();
+		this.mockmvc.perform(post("/api/coins/bonificacion")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(bonificacionCommand)))
+				.andExpect(status().isOk());
+		
+		// Act - Assert
+		this.mockmvc.perform(get("/api/coins/bonificacion/{id}", bonificacionCommand.getIdBonificacion())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(bonificacionCommand))).andExpect(status().isOk());
+
 	}
 	
 	@Test

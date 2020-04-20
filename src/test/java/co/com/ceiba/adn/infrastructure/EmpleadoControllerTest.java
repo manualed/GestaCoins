@@ -150,29 +150,31 @@ public class EmpleadoControllerTest {
 				.andExpect(status().isOk());
 	}
 	
-//	@Test
-//	public void obtenerEmpleadoOk() throws Exception {
-//		// Arrange
-//		EmpleadoCommandTestDataBuilder empleadoCommandTestDataBuilder = new EmpleadoCommandTestDataBuilder();
-//		empleadoCommandTestDataBuilder.conFechaIngreso(new Calendar.Builder().setDate(2012, 6, 4).build().getTime());
-//		empleadoCommandTestDataBuilder.conEmail("juan.ginobili@ceiba.com.co");
-//		empleadoCommandTestDataBuilder.conFechaCambio(new Calendar.Builder().setDate(2020, 3, 1).build().getTime());
-//		empleadoCommandTestDataBuilder.conFechaNacimiento(new Calendar.Builder().setDate(2000, 6, 4).build().getTime());
-//		empleadoCommandTestDataBuilder.conNumeroDocumento("3333333");
-//		empleadoCommandTestDataBuilder.conTipoDocumento("CC");
-//		empleadoCommandTestDataBuilder.conPrimerApellido("GINOBILI");
-//		empleadoCommandTestDataBuilder.conPrimerNombre("JUAN");
-//		empleadoCommandTestDataBuilder.conIdEmpleado(3);
-//		EmpleadoCommand empleadoCommand = empleadoCommandTestDataBuilder.build();
-//		this.mockmvc.perform(post("/api/coins/empleado").contentType(MediaType.APPLICATION_JSON)
-//				.content(objectMapper.writeValueAsString(empleadoCommand))).andExpect(status().isOk());
-//
-//		// Act - Assert
-//		this.mockmvc.perform(get("/api/coins/empleado/{id}", empleadoCommand.getIdEmpleado())
-//				.contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(empleadoCommand)))
-//				.andExpect(status().isOk());
-//
-//	}
+	@Test
+	public void obtenerEmpleadoOk() throws Exception {
+		// Arrange
+		EmpleadoCommandTestDataBuilder empleadoCommandTestDataBuilder = new EmpleadoCommandTestDataBuilder();
+		empleadoCommandTestDataBuilder.conFechaIngreso(new Calendar.Builder().setDate(2012, 6, 4).build().getTime());
+		empleadoCommandTestDataBuilder.conEmail("juan.ginobili@ceiba.com.co");
+		empleadoCommandTestDataBuilder.conFechaCambio(new Calendar.Builder().setDate(2020, 3, 1).build().getTime());
+		empleadoCommandTestDataBuilder.conFechaNacimiento(new Calendar.Builder().setDate(2000, 6, 4).build().getTime());
+		empleadoCommandTestDataBuilder.conNumeroDocumento("3333333");
+		empleadoCommandTestDataBuilder.conTipoDocumento("CC");
+		empleadoCommandTestDataBuilder.conPrimerApellido("GINOBILI");
+		empleadoCommandTestDataBuilder.conPrimerNombre("JUAN");
+		empleadoCommandTestDataBuilder.conIdEmpleado(1);
+		EmpleadoCommand empleadoCommand = empleadoCommandTestDataBuilder.build();
+		this.mockmvc.perform(post("/api/coins/empleado")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(empleadoCommand)))
+				.andExpect(status().isOk());
+		
+		// Act - Assert
+		this.mockmvc.perform(get("/api/coins/empleado/{id}", empleadoCommand.getIdEmpleado())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(empleadoCommand))).andExpect(status().isOk());
+
+	}
 	
 
 	@Test
